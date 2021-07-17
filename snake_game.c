@@ -1,13 +1,47 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdbool.h> // included '<stdbool.h>'
+#include <stdlib.h>
+#include <time.h>
 
 const int height = 20;
 const int width = 20;
+
+char full_screen;
 
 int position_X, position_Y;
 int fruit_position_X, fruit_position_Y;
 int tail_position_X[100], tail_position_Y[100];
 int tail;
+
+bool game_over;
+int score;
+
+enum snake_directon{
+    
+    stop = 0,
+    up,
+    down,
+    left,
+    right,
+};
+
+enum snake_directon direction; // included 'enum'
+
+void initial_setting(){
+
+    game_over = false;
+    direction = stop;
+
+    position_X = width / 2;
+    position_Y = height / 2;
+
+    srand((unsigned) time(NULL));
+
+    fruit_position_X = rand() % width;
+    fruit_position_Y = rand() % height;
+
+    score = 0;
+}
 
 void game_screen(){
 
@@ -68,6 +102,7 @@ void game_screen(){
 
 int main(){
 
+    initial_setting();
     game_screen();
     return 0;
 }
